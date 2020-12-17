@@ -2,7 +2,7 @@
 
 Mission to Mars
 
-The ovarall goal of this present project is to extract information from the Web about Mission to Mars from Space X.
+The ovarall goal of this present project is to extract information from the Web about Mission to Mars from Space X and display it in a HTML page.
 
 Goals:
 - Obtain latest news about the mission from  [NASA Mars News Site](https://mars.nasa.gov/news/
