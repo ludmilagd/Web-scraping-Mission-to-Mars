@@ -2,7 +2,7 @@
 
 Mission to Mars
 
-The ovarall goal of this present project is to extract information from the Web about Mission to Mars from Space X and display it in a HTML page.
+The objective of this present project is to create an app that extract information from the Web about Mission to Mars, save it to a local Mondgos DB and thenrend the data in a HTML page.
 
 Goals:
 - Obtain latest news about the mission from  [NASA Mars News Site](https://mars.nasa.gov/news/
@@ -12,16 +12,11 @@ Goals:
 - Create a Flask application to retrieve the above information and storeresults in Mongos DB
 
 
-In order to gather avialable data for Further analysis, the folowing tools will be used
+In order to gather avialable data for Further analysis, the folowing technologies will be used:
 
-- Jupyter Notebook
 - BeautifulSoup
-- Pandas
-- Python Dictonary 
 - Requests/Splinter
 - Mongos DB
 - Flask
-- GitHub
 
 
-The final product will be deployed though GitHub in a Html Document with technical documentation, data collected and analysis.
