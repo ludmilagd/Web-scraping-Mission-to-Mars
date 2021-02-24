@@ -1,25 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[14]:
-
 
 # Dependencies
 from bs4 import BeautifulSoup
 import requests
 import os
+import re
+import pandas as pd
 from splinter import Browser
 from splinter.exceptions import ElementDoesNotExist
 
 
-# In[15]:
-
-
 executable_path = {'executable_path': 'chromedriver.exe'}
 browser = Browser('chrome', **executable_path, headless=False)
-
-
-# In[16]:
 
 
 # Source of Information
@@ -27,31 +21,18 @@ url="https://mars.nasa.gov/news/"
 browser.visit(url)
 
 
-# In[17]:
-
-
 # Create Beautiful soup parser
 html= browser.html
 soup= BeautifulSoup(html, 'html.parser')
-
-
-# In[18]:
-
 
 #Navigate to the container
 outercontainer= soup.find('div', class_='list_text')
 outercontainer
 
-
-# In[19]:
-
-
 # Go to next level- body and get description 
 body = outercontainer.find('div', class_='article_teaser_body').text
 body
 
-
-# In[20]:
 
 
 #Navigate to title and extract text only
@@ -59,14 +40,10 @@ titles = outercontainer.find('div', class_='content_title').text
 titles
 
 
-# In[21]:
-
 
 # Go to list- example of how to get all the info from the list
 lista= soup.find('ul', class_='item_list')
-
-
-# In[22]:
+lista
 
 
 # Visit Nasa page to get feature image
@@ -74,21 +51,28 @@ url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
 browser.visit(url)
 
 
-# In[23]:
+html= browser.html
+soup= BeautifulSoup(html, 'html.parser')
 
 
-# Tell Browsert to navigate to the next page by clicking FULL IMAGE
-browser.click_link_by_id('full_image')
+outercontainer2= soup.find('div', class_='SearchResultCard')
+outercontainer2
 
 
-# In[24]:
+text=[]
+
+for a in outercontainer2.find_all('a', href=True): 
+    if a.text: 
+        text.append(a['href'])
+first_text=text[0]   
+first_text
 
 
-# Click to "More Info" button
-browser.click_link_by_partial_text('more info')
+browser.click_link_by_partial_href(first_text)
 
 
-# In[25]:
+browser.click_link_by_partial_text('Download JPG')
+
 
 
 # Use beautiful soup to extract information 
@@ -96,32 +80,50 @@ html= browser.html
 soup= BeautifulSoup(html, 'html.parser')
 
 
-# In[26]:
+
+# Get the link to the image source
+feature_image_img = soup.find('img')['src']
+feature_image_img
 
 
-# Find fugre container
-feature_image= soup.find('figure', class_='lede')
-feature_image
+
+# Obtain facts about Mars
+url = 'https://space-facts.com/mars/'
+browser.visit(url)
 
 
-# In[27]:
+
+html= browser.html
+soup= BeautifulSoup(html, 'html.parser')
 
 
-# Obtain reference and create complete link to feature image
-feature_image_= feature_image.find('a')['href']
-feature_image_= url+feature_image_
-feature_image_        
+table = soup.find('table', id="tablepress-p-mars")
+print (table)
 
 
-# In[28]:
+
+# Use Pandas to convert the data to a HTML table string
+tables = pd.read_html(url)
+table_df=tables[0]
+table_df
+
+
+
+table_df.columns=["Description","Value"]
+table_df=table_df.set_index("Description")
+table_df
+
+
+
+table_html= table_df.to_html()
+table_html
+
 
 
 # Visit webpage to extract Hemisphere pics
 url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
 browser.visit(url)
 
-
-# In[29]:
 
 
 html= browser.html
@@ -136,8 +138,6 @@ for i in range(len(hemis)):
     
     browser.find_by_css('h3')[i].click()
     
-#     image=soup.find('div', class_='downloads')
-#     hemi_dict['image']= image.find('a')['href']
     image = browser.links.find_by_text('Sample').first
     hemi_dict['images']= image['href']
     
@@ -152,13 +152,11 @@ for i in range(len(hemis)):
     
 
 
-# In[30]:
-
-
 print(hemiphere_list)
 
 
-# In[ ]:
+
+
 
 
 
