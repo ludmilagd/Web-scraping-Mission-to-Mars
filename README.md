@@ -16,7 +16,7 @@ In order to gather avialable data for Further analysis, the folowing technologie
 
 - BeautifulSoup
 - Requests/Splinter
-- Mongos DB
+- MongosDB
 - Flask
 
 
