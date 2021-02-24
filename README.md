@@ -21,4 +21,4 @@ In order to gather avialable data for Further analysis, the folowing technologie
 
 
 HTLM image:
-![Screenshot](App.png)
+![Screenshot](App.PNG)
