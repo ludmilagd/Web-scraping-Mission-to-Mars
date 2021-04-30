@@ -2,7 +2,7 @@
 
 Mission to Mars
 
-The objective of this present project is to create an app that extract information from the Web about Mission to Mars, save it to a local Mondgos DB and rend the data to a HTML page.
+The objective of this  project is to create an application that extract information from the Web about Mission to Mars, save it to a local Mondgos DB and rend the data to a HTML page.
 
 Goals:
 - Obtain latest news about the mission from  [NASA Mars News Site](https://mars.nasa.gov/news/
