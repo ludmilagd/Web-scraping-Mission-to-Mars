@@ -1,6 +1,6 @@
-# Web-scraping-challenge
+# Web-scraping-project
 
-Mission to Mars
+Mission to Mars Web Scraping
 
 The objective of this  project is to create an application that extract information from the Web about Mission to Mars, save it to a local Mondgos DB and rend the data to a HTML page.
 
