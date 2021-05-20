@@ -12,7 +12,7 @@ Goals:
 - Create a Flask application to retrieve the above information and store results in Mongos DB
 
 
-In order to gather available data for further analysis, the following technologies will be used:
+Technologies used:
 
 - BeautifulSoup
 - Requests/Splinter
