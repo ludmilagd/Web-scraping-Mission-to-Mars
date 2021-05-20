@@ -1,4 +1,4 @@
-# Web-scraping-project
+# Web scraping project
 
 Mission to Mars Web Scraping
 
